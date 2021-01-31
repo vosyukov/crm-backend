@@ -1,0 +1,33 @@
+version: "2.4"
+
+services:
+  crm-nodejs:
+    container_name: crm-nodejs
+    image: node:12.16.1-alpine
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+      - ${APP_DEBUG_PORT}:${APP_DEBUG_PORT}
+    env_file:
+      - .env
+    volumes:
+      - ./:/app:cached
+    working_dir: /app
+    command: npm run start:dev
+    networks:
+      - crm
+    depends_on:
+      - crm-mongodb
+
+  crm-mongodb:
+    container_name: crm-mongodb
+    image: mongo:3.6.21
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    networks:
+      - crm
+
+
+networks:
+  crm:
+    external: true
