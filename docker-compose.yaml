@@ -1,8 +1,8 @@
 version: "2.4"
 
 services:
-  crm-nodejs:
-    container_name: crm-nodejs
+  crm-backend-nodejs:
+    container_name: crm-backend-nodejs
     image: node:12.16.1-alpine
     ports:
       - ${APP_PORT}:${APP_PORT}
@@ -10,9 +10,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./:/app:cached
+      - ./:/app
     working_dir: /app
-    command: npm run start:dev
     networks:
       - crm
     depends_on:
