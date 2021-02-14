@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "docker-compose run crm-backend-nodejs sh -c \"npx rimraf dist\"",
-    "build": "docker-compose run crm-backend-nodejs sh -c \"npx nest build\"",
+    "build": "npx nest build",
     "format": "docker-compose run crm-backend-nodejs sh -c \"npx prettier --write \\\"src/**/*.ts\\\" \\\"test/**/*.ts\\\"\"",
     "start": "docker-compose run crm-backend-nodejs sh -c \"npx nest start\"",
     "start:dev": "docker-compose run crm-backend-nodejs sh -c \"npx nest start --watch\" --remove-orphans",
