@@ -1,14 +1,14 @@
-version: "2.4"
+version: "3.0"
 
 services:
-  crm-backend-nodejs:
-    container_name: crm-backend-nodejs
+  crm-backend:
+    container_name: crm-backend
     image: node:12.16.1-alpine
     ports:
       - ${APP_PORT}:${APP_PORT}
       - ${APP_DEBUG_PORT}:${APP_DEBUG_PORT}
     env_file:
-      - .env
+      - .env.dev
     volumes:
       - ./:/app
     working_dir: /app
@@ -16,6 +16,7 @@ services:
       - crm
     depends_on:
       - crm-mongodb
+    command: npm run start:dev
 
   crm-mongodb:
     container_name: crm-mongodb
